@@ -1,0 +1,95 @@
+.Signup {
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .header .text {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 10px;
+  }
+  
+  .underline {
+    width: 80px;
+    height: 4px;
+    background-color: #ffeb3b;
+    margin: 0 auto 20px auto;
+    border-radius: 2px;
+  }
+  
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .inputs .input {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .inputs .input img {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+  }
+  
+  .inputs .input input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .inputs .input input::placeholder {
+    color: #999;
+  }
+  
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #388e3c;
+  }
+  
+  .logo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff5722;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  footer {
+    margin-top: 20px;
+    color: #999;
+  }
+  .gray {
+    background-color: #EAEAEAEA;
+    color: #676767;
+  }
