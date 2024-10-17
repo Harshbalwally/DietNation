@@ -4,23 +4,32 @@ import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 import phone_icon from '../Assets/phone.png';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginSignup = () => {
-  const [action, setAction] = useState("Sign up");
+  const [isSignup, setIsSignup] = useState(true);
+  const navigate = useNavigate(); // Initialize navigate
 
   const toggleAction = () => {
-    setAction(action === "Sign up" ? "Login" : "Sign up");
+    setIsSignup(!isSignup);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Simulate a login or signup success
+    // After login/signup success, navigate to the Home page
+    navigate('/home');
   };
 
   return (
     <div className='Signup'>
       <div className='logo'>DietNation</div>
       <div className='header'>
-        <div className='text'>{action}</div>
+        <div className='text'>{isSignup ? "Sign up" : "Login"}</div>
         <div className='underline'></div>
       </div>
       <div className='inputs'>
-        {action === "Sign up" && (
+        {isSignup && (
           <div className='input'>
             <img src={user_icon} alt='' />
             <input type='text' placeholder='Enter your username' />
@@ -34,7 +43,7 @@ const LoginSignup = () => {
           <img src={password_icon} alt='' />
           <input type='password' placeholder='Enter your password' />
         </div>
-        {action === "Sign up" && (
+        {isSignup && (
           <>
             <div className='input'>
               <img src={password_icon} alt='' />
@@ -47,11 +56,11 @@ const LoginSignup = () => {
           </>
         )}
       </div>
-      <button type='submit' className='submit'>
-        {action}
+      <button type='submit' className='submit' onClick={handleSubmit}>
+        {isSignup ? "Sign up" : "Login"}
       </button>
       <button type='button' className='toggle-action' onClick={toggleAction}>
-        {action === "Sign up" ? "Switch to Login" : "Switch to Sign up"}
+        {isSignup ? "Switch to Login" : "Switch to Sign up"}
       </button>
     </div>
   );
