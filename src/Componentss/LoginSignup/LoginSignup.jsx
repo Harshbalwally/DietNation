@@ -18,7 +18,7 @@ const LoginSignup = () => {
     e.preventDefault();
     // Simulate a login or signup success
     // After login/signup success, navigate to the Home page
-    navigate("/home");
+    navigate("/");
   };
 
   return (
