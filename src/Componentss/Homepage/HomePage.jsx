@@ -7,18 +7,30 @@ const Home = () => {
   const navigate = useNavigate();
 
   // States for BMI calculation
+  const [showBmiSection, setShowBmiSection] = useState(false);
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [bmi, setBmi] = useState(null);
   const [bmiCategory, setBmiCategory] = useState("");
 
   // States for maintenance calories calculation
+  const [showCaloriesSection, setShowCaloriesSection] = useState(false);
   const [age, setAge] = useState("");
   const [activityLevel, setActivityLevel] = useState("");
   const [maintenanceCalories, setMaintenanceCalories] = useState(null);
 
   const handleLogout = () => {
     navigate("/");
+  };
+
+  // Toggle BMI section visibility
+  const toggleBmiSection = () => {
+    setShowBmiSection((prev) => !prev);
+  };
+
+  // Toggle Maintenance Calories section visibility
+  const toggleCaloriesSection = () => {
+    setShowCaloriesSection((prev) => !prev);
   };
 
   // BMI calculation logic
@@ -54,7 +66,7 @@ const Home = () => {
         10 * weight + 6.25 * height - 5 * age + (activityLevel === "male" ? 5 : -161);
 
       const activityMultiplier = {
-        "sedentary": 1.2,
+        sedentary: 1.2,
         "lightly active": 1.375,
         "moderately active": 1.55,
         "very active": 1.725,
@@ -68,114 +80,114 @@ const Home = () => {
   return (
     <Layout>
       <div className="home-container">
-        <div className="about-section">
-          <h2>About</h2>
-          <p>
-            Welcome to Diet Nation! Our website helps you track your calorie
-            intake and monitor your food consumption based on the tailored diets
-            we offer, guiding you towards your fitness goals. We place a strong
-            emphasis on maintaining overall physical health and well-being.
-          </p>
+        {/* Toggleable BMI Section */}
+        <div className="bmi-toggle-section" onClick={toggleBmiSection}>
+          <button id="aboutheading">Calculate Your BMI</button>
         </div>
 
-        <div className="bmi-section">
-          <h2>Calculate Your BMI</h2>
-          <div className="bmi-box">
-            <div className="bmi-inputs">
-              <label>Weight (kg):<br></br></label>
-              <input
-                className="weight"
-                type="number"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                placeholder="Enter your weight"
-              />
+        {showBmiSection && (
+          <div className="bmi-section">
+            <div className="bmi-box">
+              <div className="bmi-inputs">
+                <label>Weight (kg):<br /></label>
+                <input
+                  className="weight"
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  placeholder="Enter your weight"
+                />
+              </div>
+              <div className="bmi-inputs">
+                <label>Height (cm):<br /></label>
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  placeholder="Enter your height"
+                />
+              </div>
+              <button onClick={calculateBmi} className="calculate-bmi-btn">
+                Calculate BMI
+              </button>
             </div>
-            <div className="bmi-inputs">
-              <label>Height (cm):<br></br></label>
-              <input
-                type="number"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-                placeholder="Enter your height"
-              />
-            </div>
-            <button onClick={calculateBmi} className="calculate-bmi-btn">
-              Calculate BMI
-            </button>
+
+            {bmi && (
+              <div className="bmi-result">
+                <h3>Your BMI: {bmi}</h3>
+                <p>{bmiCategory}</p>
+                {(bmiCategory.includes("gaining weight") || bmiCategory.includes("losing weight")) && (
+                  <button className="see-diets-btn">
+                    {bmiCategory.includes("gaining weight")
+                      ? "See diets for gaining weight"
+                      : "See diets for losing weight"}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
-
-          {bmi && (
-            <div className="bmi-result">
-              <h3>Your BMI: {bmi}</h3>
-              <p>{bmiCategory}</p>
-              {(bmiCategory.includes("gaining weight") || bmiCategory.includes("losing weight")) && (
-                <button className="see-diets-btn">
-                  {bmiCategory.includes("gaining weight")
-                    ? "See diets for gaining weight"
-                    : "See diets for losing weight"}
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+        )}
 
         {/* Maintenance Calories Section */}
-        <div className="calories-section">
-          <h2>Calculate Your Maintenance Calories</h2>
-          <div className="calories-box">
-            <div className="calories-inputs">
-              <label>Weight (kg):<br></br></label>
-              <input
-                type="number"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                placeholder="Enter your weight"
-              />
-            </div>
-            <div className="calories-inputs">
-              <label>Height (cm):<br></br></label>
-              <input
-                type="number"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-                placeholder="Enter your height"
-              />
-            </div>
-            <div className="calories-inputs">
-              <label>Age:<br></br></label>
-              <input
-                type="number"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                placeholder="Enter your age"
-              />
-            </div>
-            <div className="calories-input">
-              <label>Activity Level:<br></br></label>
-              <select
-                value={activityLevel}
-                onChange={(e) => setActivityLevel(e.target.value)}
-              >
-                <option value="">Select</option>
-                <option value="sedentary">Sedentary</option>
-                <option value="lightly active">Lightly active</option>
-                <option value="moderately active">Moderately active</option>
-                <option value="very active">Very active</option>
-                <option value="super active">Super active</option>
-              </select>
-            </div>
-            <button onClick={calculateMaintenanceCalories} className="calculate-bmi-btn">
-              Calculate Maintenance Calories
-            </button>
-          </div>
-
-          {maintenanceCalories && (
-            <div className="calories-result">
-              <h3>Your Maintenance Calories: {maintenanceCalories} kcal/day</h3>
-            </div>
-          )}
+        <div className="calories-toggle-section" onClick={toggleCaloriesSection}>
+          <button id="aboutheadings">Calculate Your Maintenance Calories</button>
         </div>
+        {showCaloriesSection && (
+          <div className="calories-section">
+            <div className="calories-box">
+              <div className="calories-inputs">
+                <label>Weight (kg):<br /></label>
+                <input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  placeholder="Enter your weight"
+                />
+              </div>
+              <div className="calories-inputs">
+                <label>Height (cm):<br /></label>
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  placeholder="Enter your height"
+                />
+              </div>
+              <div className="calories-inputs">
+                <label>Age:<br /></label>
+                <input
+                  type="number"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  placeholder="Enter your age"
+                />
+              </div>
+              <div className="calories-input">
+                <label>Activity Level:<br /></label>
+                <select
+                  value={activityLevel}
+                  onChange={(e) => setActivityLevel(e.target.value)}
+                >
+                  <option value="">Select</option>
+                  <option value="sedentary">Sedentary</option>
+                  <option value="lightly active">Lightly active</option>
+                  <option value="moderately active">Moderately active</option>
+                  <option value="very active">Very active</option>
+                  <option value="super active">Super active</option>
+                </select>
+              </div>
+              <button onClick={calculateMaintenanceCalories} className="calculate-bmi-btn">
+                Calculate Maintenance Calories
+              </button>
+            </div>
+
+            {maintenanceCalories && (
+              <div className="calories-result">
+                <h3>Your Maintenance Calories: {maintenanceCalories} kcal/day</h3>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </Layout>
   );

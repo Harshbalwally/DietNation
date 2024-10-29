@@ -1,4 +1,4 @@
-/* Navbar */
+
 .navbar {
   width: 100%;
   display: flex;
@@ -40,13 +40,16 @@
 
 /* Main container */
 .home-container {
-  background-color: #151414;
-  color: white;
+  padding: 20px;
+   color: white;
   padding: 20px;
 }
 
 /* About section styling */
 .about-section {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0 ;
   max-width: 600px;
   margin: 40px auto;
   background-color: #222;
@@ -54,13 +57,20 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   text-align: center;
+  padding-left: 50%;
 }
 
 .about-section h2 {
+ 
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0 ;
   text-decoration: underline;
   font-size: 1.8rem;
   color: white;
   margin-bottom: 10px;
+  text-decoration: underline;
+  
 }
 
 .about-section p {
@@ -68,116 +78,55 @@
   color: white;
 }
 
-/* BMI section styling */
-.bmi-section {
-  max-width: 600px;
-  margin: 30px auto;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+.bmi-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
-.bmi-section h2 {
-  text-decoration: underline;
-  font-size: 1.8rem;
-  color: white;
-  text-align: center;
+.bmi-inputs label {
+  color: #ddd;
+  font-size: 1.1rem;
 }
 
-/* Input styling */
 .bmi-inputs input {
-  
-  padding: 10px;
-  margin: 8px 0;
+  padding: 12px;
+  width: 80%;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f7f9fc;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  font-size: 16px;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  padding-right: 65%;
 }
 
 .bmi-inputs input:focus {
-
-  border-color: #5a67d8;
-  box-shadow: 0 0 5px rgba(90, 103, 216, 0.5);
-  background-color: #fff;
-}
-
-.calculate-bmi-btn {
-  padding: 10px 20px;
-  background-color: #5a67d8;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.calculate-bmi-btn:hover {
-  background-color: #434190;
-}
-
-/* BMI Result Styling */
-.bmi-result {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #e9f4ff;
-  border-left: 4px solid #5a67d8;
-  border-radius: 8px;
-  color: #333;
-}
-
-/* Additional Weight Class Styling */
-.weight {
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  padding: 12px;
-  margin: 4px;
-}
-/* BMI Result Styling */
-.bmi-result {
-  position: relative;
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #e9f4ff;
-  border-left: 4px solid #5a67d8;
-  border-radius: 8px;
-  color: #333;
+  border-color: #a8d5e2;
+  box-shadow: 0 0 8px rgba(168, 213, 226, 0.5);
 }
 
 .see-diets-btn {
-  
-  bottom: 10px;
-  left: 10px;
-  padding: 8px 12px;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 18px;
   background-color: #5a67d8;
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
   font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .see-diets-btn:hover {
   background-color: #434190;
 }
+
 /* Maintenance Calories Section Styling */
-.calories-section {
-  margin-top: 30px;
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  color: #fff;
-}
+
 
 .calories-box {
   display: flex;
@@ -189,55 +138,182 @@
   color: #fff;
 }
 
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+/* Heading Button Styling */
+#aboutheading {
+ 
+  padding: 12px 24px;
+ 
+  background: linear-gradient(145deg, #5a67d8, #434190);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#aboutheading:hover {
+  background: linear-gradient(145deg, #434190, #5a67d8);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+#aboutheading:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#aboutheadings {
+ 
+  padding: 12px 24px;
+ 
+  background: linear-gradient(145deg, #5a67d8, #434190);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#aboutheadings:hover {
+  background: linear-gradient(145deg, #434190, #5a67d8);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+#aboutheadings:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+/* Main container */
+
+
+/* Refined BMI and Calories Box Styling */
+.bmi-section,
+.calories-section {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px 20px;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bmi-section:hover,
+.calories-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.bmi-section h2,
+.calories-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #a8d5e2;
+}
+
+/* Shared input styles */
+.bmi-inputs,
+.calories-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.bmi-inputs label,
+.calories-inputs label {
+  color: #ddd;
+  font-size: 1.1rem;
+}
+
+.bmi-inputs input,
 .calories-inputs input,
-.calories-inputs select {
-
+.calories-input select {
   padding: 10px;
-  margin: 8px 0;
+  font-size: 1rem;
+  border-radius: 5px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
- padding-right: 65%;
-  
+  width: 80%;
 }
 
-.calories-inputs input:focus,
-.calories-inputs select:focus {
-  border-color: #5a67d8;
-  box-shadow: 0 0 5px rgba(90, 103, 216, 0.5);
-  background-color: #fff;
-  
+/* Button styles */
+.calculate-bmi-btn {
+  padding: 10px 20px;
+  background-color: #a8d5e2;
+  color: #151414;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.calculate-bmi-btn:hover {
+  background-color: #a2d9e3;
+}
+
+/* Result section styles */
+.bmi-result,
 .calories-result {
   margin-top: 20px;
-  padding: 15px;
-  background-color: #e9f4ff;
-  border-left: 4px solid #5a67d8;
-  border-radius: 8px;
-  color: #333;
-}
-.calories-input input,
-.calories-input select {
-
   padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
- padding-right: 73%;
-  
+  background-color: #444;
+  border: 1px solid #777;
 }
-.calories-section h2 {
-  text-decoration: underline;
-  font-size: 1.8rem;
-  color: white;
-  margin-bottom: 10px;
-  padding-left: 11%;
+/* HomePage.css */
+.home-container {
+  padding: 20px;
 }
+
+.bmi-toggle-section,
+.calories-toggle-section {
+  margin-bottom: 15px;
+}
+
+.bmi-box, .calories-box {
+  margin: 20px 0;
+}
+
+.bmi-inputs, .calories-inputs {
+  margin: 10px 0;
+}
+
+.calculate-bmi-btn {
+  margin: 10px; /* Add margin around the button */
+}
+
+.see-diets-btn {
+  margin-top: 10px; /* Add margin for see diets button if needed */
+}
+

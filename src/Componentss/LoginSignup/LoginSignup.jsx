@@ -56,10 +56,10 @@ const LoginSignup = () => {
           </>
         )}
       </div>
-      <button type="submit" className="submit" onClick={handleSubmit}>
+      <button  type="submit" className="submit" onClick={handleSubmit}>
         {isSignup ? "Sign up" : "Login"}
       </button>
-      <button type="button" className="toggle-action" onClick={toggleAction}>
+      <button  type="button" className="toggle-action" onClick={toggleAction}>
         {isSignup ? "Switch to Login" : "Switch to Sign up"}
       </button>
     </div>
