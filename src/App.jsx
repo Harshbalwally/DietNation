@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginSignup from "./Componentss/LoginSignup/LoginSignup";
 import Home from "./Componentss/Homepage/HomePage";
 
+
 function App() {
   return (
     <Routes>
-      {/* Default path to show Login/Signup page */}
+    
+    
       <Route path="/login" element={<LoginSignup />} />
 
       {/* Home page that user navigates to after login/signup */}

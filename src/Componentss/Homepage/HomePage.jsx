@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import Layout from "../Layout";
+import Card from "../Card/Card";
+import Verticalline from "../Vertical-Line/Verticalline";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -188,8 +190,71 @@ const Home = () => {
             )}
           </div>
         )}
+         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <h1 className="headinghaiye">Recommended Diets:</h1>
+        <br></br>
+       
+     <table>
+      <tr>
+    
+        <th><Card/></th>
+      
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+         <Verticalline/>
+        
+      </tr>
+      <br></br>
+      <tr>
+      <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+      </tr>
+      <br></br>
+      <tr>
+      <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+      </tr>
+      <br></br>
+      <tr>
+      <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+      </tr>
+      <br></br>
+      <tr>
+      <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+      </tr>
+      <br></br>
+      <tr>
+      <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+        <th><Card/></th>
+      </tr>
+     </table>
       </div>
+    
     </Layout>
+   
   );
 };
 
