@@ -11,13 +11,14 @@ const Header = () => {
         // Handle any logout logic here, then navigate back to login
         navigate('/Login');
       };
+
   return (
     <div>
 
        <nav className='navbar'>
         <nav className="nav-buttons">
           <button onClick={() => navigate('/')}>Home</button>
-          <button onClick={() => navigate('/diets')}>Diets</button>
+          <button onClick={() => navigate('/Diet')}>Diets</button>
           <button onClick={() => navigate('/profile')}>Your Profile</button>
           <button onClick={handleLogout}>Log Out</button>
         </nav>

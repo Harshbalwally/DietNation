@@ -1,0 +1,114 @@
+/* Main container styling */
+.hading{
+    text-decoration: underline;
+}
+.diet-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .diet-container h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Filter box styling */
+ /* Filter box styling */
+.filter-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5); /* Updated shadow */
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  
+  .filter-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .filter-option label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .filter-option select,
+  .filter-option input {
+    padding: 8px;
+    font-size: 1em;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Gender options styling */
+  .gender-options {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .gender-options label {
+    font-weight: normal;
+  }
+  
+  /* Button styling */
+  .apply-filter-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+  }
+  
+  .apply-filter-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .filter-box {
+      padding: 15px;
+    }
+  
+    .diet-container h1 {
+      font-size: 1.5em;
+    }
+  
+    .apply-filter-btn {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .filter-box {
+      padding: 10px;
+    }
+  
+    .diet-container h1 {
+      font-size: 1.3em;
+    }
+  
+    .gender-options {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+  
