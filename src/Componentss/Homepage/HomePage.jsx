@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./HomePage.css";
 import Layout from "../Layout";
 import Card from "../Card/Card";
 import Verticalline from "../Vertical-Line/Verticalline";
+import UserContext from "../../UserContext";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  // Access context to store and retrieve BMI, maintenance calories, and weight
+  const { setBmi, setMaintenanceCalories, setWeight, maintenanceCalories } = useContext(UserContext);
+
   // States for BMI calculation
   const [showBmiSection, setShowBmiSection] = useState(false);
-  const [weight, setWeight] = useState("");
+  const [weight, localSetWeight] = useState("");
   const [height, setHeight] = useState("");
-  const [bmi, setBmi] = useState(null);
   const [bmiCategory, setBmiCategory] = useState("");
 
   // States for maintenance calories calculation
   const [showCaloriesSection, setShowCaloriesSection] = useState(false);
   const [age, setAge] = useState("");
   const [activityLevel, setActivityLevel] = useState("");
-  const [maintenanceCalories, setMaintenanceCalories] = useState(null);
 
   const handleLogout = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   // Toggle BMI section visibility
@@ -40,7 +43,7 @@ const Home = () => {
     if (weight && height) {
       const heightInMeters = height / 100;
       const calculatedBmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
-      setBmi(calculatedBmi);
+      setBmi(calculatedBmi); // Store BMI in context
       determineBmiCategory(calculatedBmi);
     }
   };
@@ -75,8 +78,14 @@ const Home = () => {
         "super active": 1.9,
       };
 
-      setMaintenanceCalories((bmr * activityMultiplier[activityLevel]).toFixed(0));
+      setMaintenanceCalories((bmr * activityMultiplier[activityLevel]).toFixed(0)); // Store Maintenance Calories in context
     }
+  };
+
+  const handleWeightChange = (e) => {
+    const newWeight = e.target.value;
+    localSetWeight(newWeight); // Update local weight
+    setWeight(newWeight); // Update weight in context
   };
 
   return (
@@ -96,7 +105,7 @@ const Home = () => {
                   className="weight"
                   type="number"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  onChange={handleWeightChange}
                   placeholder="Enter your weight"
                 />
               </div>
@@ -114,10 +123,9 @@ const Home = () => {
               </button>
             </div>
 
-            {bmi && (
+            {bmiCategory && (
               <div className="bmi-result">
-                <h3>Your BMI: {bmi}</h3>
-                <p>{bmiCategory}</p>
+                <h3>Your BMI Category: {bmiCategory}</h3>
                 {(bmiCategory.includes("gaining weight") || bmiCategory.includes("losing weight")) && (
                   <button className="see-diets-btn">
                     {bmiCategory.includes("gaining weight")
@@ -142,7 +150,7 @@ const Home = () => {
                 <input
                   type="number"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  onChange={handleWeightChange}
                   placeholder="Enter your weight"
                 />
               </div>
@@ -183,78 +191,45 @@ const Home = () => {
               </button>
             </div>
 
-            {maintenanceCalories && (
-              <div className="calories-result">
-                <h3>Your Maintenance Calories: {maintenanceCalories} kcal/day</h3>
-              </div>
-            )}
+            <div className="calories-result">
+              <h3>Your Maintenance Calories: {maintenanceCalories} kcal/day</h3>
+            </div>
           </div>
         )}
-         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        
+        <br /><br /><br /><br />
 
         <h1 className="headinghaiye">Recommended Diets:</h1>
-        <br></br>
+        <br />
        
-     <table>
-      <tr>
-    
-        <th><Card/></th>
-      
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-         <Verticalline/>
-        
-      </tr>
-      <br></br>
-      <tr>
-      <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-      </tr>
-      <br></br>
-      <tr>
-      <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-      </tr>
-      <br></br>
-      <tr>
-      <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-      </tr>
-      <br></br>
-      <tr>
-      <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-      </tr>
-      <br></br>
-      <tr>
-      <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-        <th><Card/></th>
-      </tr>
-     </table>
+        <table>
+          <tr>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <Verticalline />
+          </tr>
+          <br />
+          <tr>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+          </tr>
+          <br />
+          <tr>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+            <th><Card /></th>
+          </tr>
+        </table>
       </div>
-    
     </Layout>
-   
   );
 };
 

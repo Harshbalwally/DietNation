@@ -8,20 +8,21 @@ const Diet = () => {
   const [calories, setCalories] = useState('');
   const [gender, setGender] = useState('');
   const [ageRange, setAgeRange] = useState('');
+  const [goal, setGoal] = useState('');
   const [filteredDiets, setFilteredDiets] = useState([]);
 
   // Sample data for diets (you can replace this with real data)
   const diets = [
-    { id: 1, foodType: 'veg', calories: 200, gender: 'male', ageRange: '18-25', name: 'Veg Diet 1' },
-    { id: 2, foodType: 'veg', calories: 250, gender: 'female', ageRange: '26-35', name: 'Veg Diet 2' },
-    { id: 3, foodType: 'non-veg', calories: 300, gender: 'male', ageRange: '36-45', name: 'Non-Veg Diet 1' },
-    { id: 4, foodType: 'non-veg', calories: 350, gender: 'female', ageRange: '46+', name: 'Non-Veg Diet 2' },
+    { id: 1, foodType: 'veg', calories: 200, gender: 'male', ageRange: '18-25', name: 'Veg Diet for Maintenance', goal: 'maintenance' },
+    { id: 2, foodType: 'veg', calories: 250, gender: 'female', ageRange: '26-35', name: 'Veg Diet for Weight Gain', goal: 'gain' },
+    { id: 3, foodType: 'non-veg', calories: 300, gender: 'male', ageRange: '36-45', name: 'Non-Veg Diet for Weight Loss', goal: 'lose' },
+    { id: 4, foodType: 'non-veg', calories: 350, gender: 'female', ageRange: '46+', name: 'Non-Veg Diet for Weight Gain', goal: 'gain' },
     // Add more diet options as needed
   ];
 
   const handleFilterApply = () => {
     // Check if any input is missing
-    if (!foodType || !calories || !gender || !ageRange) {
+    if (!foodType || !calories || !gender || !ageRange || !goal) {
       alert('Please fill out all fields before applying the filter.');
       return;
     }
@@ -32,19 +33,20 @@ const Diet = () => {
         diet.foodType === foodType &&
         diet.calories <= calories &&
         diet.gender === gender &&
-        diet.ageRange === ageRange
+        diet.ageRange === ageRange &&
+        diet.goal === goal
       );
     });
 
     setFilteredDiets(filtered);
-    console.log('Filters applied:', { foodType, calories, gender, ageRange });
+    console.log('Filters applied:', { foodType, calories, gender, ageRange, goal });
   };
 
   return (
     <div>
       <Header />
       <div className="diet-container">
-        <h1 className='hading'>Choose Your Diet</h1>
+        <h1 className='heading'>Choose Your Diet</h1>
         
         <div className="filter-box">
           <div className="filter-option">
@@ -103,13 +105,23 @@ const Diet = () => {
             </select>
           </div>
 
+          <div className="filter-option">
+            <label>Diet Goal:</label>
+            <select onChange={(e) => setGoal(e.target.value)} value={goal}>
+              <option value="">Select Goal</option>
+              <option value="gain">Diet for Gaining Weight</option>
+              <option value="lose">Diet for Losing Weight</option>
+              <option value="maintenance">Diet for Maintenance</option>
+            </select>
+          </div>
+
           <button className="apply-filter-btn" onClick={handleFilterApply}>
             Apply Filter
           </button>
 
         </div>
       </div>
-
+   
       <div className="diets-display">
         {filteredDiets.length > 0 ? (
           filteredDiets.map(diet => (

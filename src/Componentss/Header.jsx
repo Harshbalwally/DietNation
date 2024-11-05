@@ -19,7 +19,7 @@ const Header = () => {
         <nav className="nav-buttons">
           <button onClick={() => navigate('/')}>Home</button>
           <button onClick={() => navigate('/Diet')}>Diets</button>
-          <button onClick={() => navigate('/profile')}>Your Profile</button>
+          <button onClick={() => navigate('/Profile')}>Your Profile</button>
           <button onClick={handleLogout}>Log Out</button>
         </nav>
         </nav>
